@@ -1,4 +1,5 @@
 # Katugem
+## Grow your german!
 Grupinis projektas, kuris yra skirtas Objektinio programavimo moduliui C++.
 Komandos nariai: Emilija Sankauskaitė (5 grupė), Ugnius Teišerskis (1 grupė).
 ## Tikslas:
