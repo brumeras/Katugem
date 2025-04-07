@@ -14,11 +14,12 @@ User::User()
 User::User(string catName)
 {
     setCat(Cat(catName));
+    setDollars(0);
 }
 
-void User::setId(int id)
+void User::setDollars(int dollars)
 {
-    this->user_id = id;
+    this->dollars = dollars;
 }
 
 void User::setCat(Cat cat)
@@ -26,12 +27,27 @@ void User::setCat(Cat cat)
     this->cat = cat;
 }
 
-Cat User::getCat()
+Cat& User::getCat()
 {
     return cat;
 }
 
-int User::getId()
+int User::getDollars()
 {
-    return this->user_id;
+    return this->dollars;
+}
+
+void User::reward(double dollarsGained, int knowledgeGained)
+{
+    int dollarsCurrent = this->getDollars();
+    this->setDollars(dollarsCurrent + dollarsGained);
+
+    int knowledgeCurrent = this->getCat().getKnowledge();
+    this->getCat().setKnowledge(knowledgeCurrent + knowledgeGained);
+}
+
+void User::punish(int knowledgeLost)
+{
+    int currentKnowledge = this->getCat().getKnowledge();
+    this->getCat().setKnowledge(currentKnowledge - knowledgeLost);
 }
