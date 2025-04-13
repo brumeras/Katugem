@@ -10,20 +10,20 @@ using namespace std;
 class User
 {
 private:
-    double dollars;
+    double balance;
     Cat cat;
 
 public:
     User();
     User(string catName);
 
-    void setDollars(int dollars);
+    void setBalance(int balance);
     void setCat(Cat cat);
     Cat& getCat();
-    int getDollars();
+    int getBalance();
 
     // these methods will be called after/during games
-    void reward(double dollarsGained, int knowledgeGained);
+    void reward(double balanceGained, int knowledgeGained);
     void punish(int knowledgeGained);
 };
 

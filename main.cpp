@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+
 #include "User.h"
 #include "Cat.h"
 #include "TranslationQuiz.h"
@@ -8,9 +9,31 @@ using namespace std;
 
 int main()
 {
-    User user("Spurga");
+    cout << "\n---------------------------------------------\n"
+         << "               Grow Your German"
+         << "\n---------------------------------------------\n\n"
+         << "Your cat has just been born, give it a name!\n"
+         << "Cat's name >> ";
+
+    string catName;
+    cin >> catName;
+
+    User user(catName);
+
+    cout << "\nYour dear " << user.getCat().getName() << "'s current stats:\n"
+         << "Name:\t\t" << user.getCat().getName() << "\n" 
+         << "Age:\t\t" << user.getCat().getAge() << " years\n"
+         << "Weight:\t\t" << user.getCat().getWeight() << " kilograms\n"
+         << "Knowledge:\t" << user.getCat().getKnowledge() << " knowledge points\n\n"
+         << "Your current balance: " << user.getBalance()
+         << " euros!\nGet more Euros by playing interactive German learning games to buy "
+         << user.getCat().getName() << " some treats!\n\n"
+         << "Starting TranslationQuiz...\n\n";
+
 
     TranslationQuiz quiz(user);
+
+    // TODO: update this section to add word pairs by reading from a file
     quiz.addWordPair("hello", "hallo");
     quiz.addWordPair("cat", "katze");
     quiz.addWordPair("dog", "hund");
