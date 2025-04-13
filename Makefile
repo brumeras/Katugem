@@ -12,3 +12,7 @@ Cat.o: Cat.cpp Cat.h
 
 TranslationQuiz.o: TranslationQuiz.cpp TranslationQuiz.h
 	g++ -std=c++17 -c TranslationQuiz.cpp
+
+clean:
+	del /Q *.o *.exe 2> nul || rm -f *.o *.exe
+
