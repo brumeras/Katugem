@@ -1,4 +1,9 @@
 #include "TranslationQuiz.h"
+#include <fstream>
+#include <sstream>
+#include <iostream> // for cout, cerr
+
+using namespace std;
 
 TranslationQuiz::TranslationQuiz(User& user) : user(user) {}
 
@@ -7,10 +12,34 @@ void TranslationQuiz::addWordPair(const string& english, const string& german)
     wordMap[english] = german;
 }
 
-// game simulation
+void TranslationQuiz::loadWordsFromFile(const string& filename)
+{
+    ifstream file(filename);
+    if (!file)
+    {
+        cerr << "Failed to open file: " << filename << endl;
+        return;
+    }
+
+    string line;
+    while (getline(file, line))
+    {
+        istringstream iss(line);
+        string english, german;
+        if (iss >> english >> german)
+        {
+            addWordPair(english, german);
+        }
+    }
+
+    file.close();
+}
+
 void TranslationQuiz::startQuiz()
 {
-    cout << "Welcome to the Translation Quiz!" << "\n\n";
+    cout << "Welcome to the Translation Quiz!\n"
+         << "Type the German translation of the English word.\n"
+         << "Type '1' at any time to exit the quiz early.\n\n";
 
     Cat &cat = user.getCat();
 
@@ -19,6 +48,12 @@ void TranslationQuiz::startQuiz()
         cout << "The German translation of \"" << pair.first << "\" >> ";
         string userAnswer;
         cin >> userAnswer;
+
+        if(userAnswer=="1")
+        {
+            cout << "\nYou've chosen to end the quiz early.\n";
+            break;
+        }
 
         if (userAnswer == pair.second)
         {
@@ -31,11 +66,11 @@ void TranslationQuiz::startQuiz()
         {
             user.punish(1);
             cout << "Oops! The correct answer is: \"" << pair.second << "\"... " << cat.getName() << "'s knowledge is decreasing...\n"
-                 << "Current " << cat.getName() << "'s knowledge: " << cat.getKnowledge() << " knowledge points.\n";
+                 << "Current " << cat.getName() << "'s knowledge: " << cat.getKnowledge() << " knowledge points.\n\n";
         }
     }
 
     cout << "Stats after quiz: \n"
          << "Current user's account balance: " << user.getBalance() << " Euro\n"
-         << "Current " << cat.getName() << "'s knowledge: " << cat.getKnowledge() << " knowledge points";
+         << "Current " << cat.getName() << "'s knowledge: " << cat.getKnowledge() << " knowledge points\n";
 }
