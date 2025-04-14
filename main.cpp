@@ -33,10 +33,7 @@ int main()
 
     TranslationQuiz quiz(user);
 
-    // TODO: update this section to add word pairs by reading from a file
-    quiz.addWordPair("hello", "hallo");
-    quiz.addWordPair("cat", "katze");
-    quiz.addWordPair("dog", "hund");
+    quiz.loadWordsFromFile("words.txt");
 
     quiz.startQuiz();
 

@@ -18,6 +18,7 @@ public:
     TranslationQuiz(User& user);
     void addWordPair(const string& english, const string& german);
     void startQuiz();
+    void loadWordsFromFile(const string& filename);
 };
 
 #endif
