@@ -21,7 +21,7 @@ int main()
     User user(catName);
 
     cout << "\nYour dear " << user.getCat().getName() << "'s current stats:\n"
-         << "Name:\t\t" << user.getCat().getName() << "\n" 
+         << "Name:\t\t" << user.getCat().getName() << "\n"
          << "Age:\t\t" << user.getCat().getAge() << " years\n"
          << "Weight:\t\t" << user.getCat().getWeight() << " kilograms\n"
          << "Knowledge:\t" << user.getCat().getKnowledge() << " knowledge points\n\n"
@@ -29,7 +29,6 @@ int main()
          << " euros!\nGet more Euros by playing interactive German learning games to buy "
          << user.getCat().getName() << " some treats!\n\n"
          << "Starting TranslationQuiz...\n\n";
-
 
     TranslationQuiz quiz(user);
 
