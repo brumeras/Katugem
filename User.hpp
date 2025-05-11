@@ -26,7 +26,7 @@ public:
     void setBalance(int balance);
     void setCat(Cat cat);
     Cat& getCat();
-    int getBalance();
+    int getBalance() const;
 
     void setLearningStrategy();
     void setTestingStrategy();

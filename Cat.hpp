@@ -22,10 +22,10 @@ public:
     void setAge(int age);
     void setKnowledge(int knowledge);
 
-    string getName();
-    double getWeight();
-    int getAge();
-    int getKnowledge();
+    string getName() const;
+    double getWeight() const;
+    int getAge() const;
+    int getKnowledge() const;
 };
 
 #endif // CAT_HPP

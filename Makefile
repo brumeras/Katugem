@@ -1,11 +1,14 @@
-app.exe: main.o User.o Cat.o QuizDataLoader.o QuizStrategy.o
-	g++ -std=c++17 -o app.exe main.o User.o Cat.o QuizDataLoader.o QuizStrategy.o
+app.exe: main.o User.o Cat.o QuizDataLoader.o QuizStrategy.o UserDataManager.o
+	g++ -std=c++17 -o app.exe main.o User.o Cat.o QuizDataLoader.o QuizStrategy.o UserDataManager.o
 
-main.o: main.cpp User.hpp Cat.hpp QuizDataLoader.hpp
+main.o: main.cpp User.hpp QuizDataLoader.hpp UserDataManager.hpp
 	g++ -std=c++17 -c main.cpp
 
 QuizDataLoader.o: QuizDataLoader.cpp QuizDataLoader.hpp
 	g++ -std=c++17 -c QuizDataLoader.cpp
+
+UserDataManager.o: UserDataManager.cpp UserDataManager.hpp User.hpp
+	g++ -std=c++17 -c UserDataManager.cpp
 
 User.o: User.cpp User.hpp Cat.hpp QuizStrategy.hpp
 	g++ -std=c++17 -c User.cpp

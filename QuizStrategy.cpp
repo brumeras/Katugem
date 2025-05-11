@@ -8,7 +8,7 @@ using namespace std;
 
 void LearningQuizStrategy::runQuiz(const map<string, string> &wordMap)
 {
-    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // getline function misbehaves sometimes, so its necessary to have this line here
+    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // getline(cin, input) function misbehaves sometimes, so its necessary to have this line here
 
     cout << "Welcome to Learning Mode!\n"
          << "We'll show you English words and their German translations.\n"

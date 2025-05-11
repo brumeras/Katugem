@@ -38,22 +38,22 @@ void Cat::setKnowledge(int knowledge)
     this->knowledge = knowledge;
 }
 
-string Cat::getName()
+string Cat::getName() const
 {
     return name;
 }
 
-double Cat::getWeight()
+double Cat::getWeight() const
 {
     return weight;
 }
 
-int Cat::getAge()
+int Cat::getAge() const
 {
     return age;
 }
 
-int Cat::getKnowledge()
+int Cat::getKnowledge() const
 {
     return knowledge;
 }

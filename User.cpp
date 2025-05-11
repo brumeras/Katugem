@@ -33,7 +33,7 @@ Cat &User::getCat()
     return cat;
 }
 
-int User::getBalance()
+int User::getBalance() const
 {
     return this->balance;
 }
