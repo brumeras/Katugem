@@ -1,18 +1,19 @@
-#include "TranslationQuiz.h"
 #include <fstream>
 #include <sstream>
-#include <iostream> // for cout, cerr
+#include <iostream>
+
+#include "Quiz.hpp"
 
 using namespace std;
 
-TranslationQuiz::TranslationQuiz(User& user) : user(user) {}
+Quiz::Quiz(User& user) : user(user) {}
 
-void TranslationQuiz::addWordPair(const string& english, const string& german)
+void Quiz::addWordPair(const string& english, const string& german)
 {
     wordMap[english] = german;
 }
 
-void TranslationQuiz::loadWordsFromFile(const string& filename)
+void Quiz::loadWordsFromFile(const string& filename)
 {
     ifstream file(filename);
     if (!file)
@@ -35,7 +36,7 @@ void TranslationQuiz::loadWordsFromFile(const string& filename)
     file.close();
 }
 
-void TranslationQuiz::startQuiz()
+void Quiz::startQuiz()
 {
     cout << "Welcome to the Translation Quiz!\n"
          << "Type the German translation of the English word.\n"

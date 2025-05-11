@@ -1,4 +1,4 @@
-#include "Cat.h"
+#include "Cat.hpp"
 
 using namespace std;
 

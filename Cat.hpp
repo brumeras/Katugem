@@ -1,5 +1,5 @@
-#ifndef CAT_H
-#define CAT_H
+#ifndef CAT_HPP
+#define CAT_HPP
 
 #include <string>
 
@@ -28,4 +28,4 @@ public:
     int getKnowledge();
 };
 
-#endif
+#endif // CAT_HPP

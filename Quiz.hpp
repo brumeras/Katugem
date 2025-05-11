@@ -1,25 +1,25 @@
-#ifndef TRANSLATIONQUIZ_H
-#define TRANSLATIONQUIZ_H
+#ifndef QUIZ_HPP
+#define QUIZ_HPP
 
 #include <iostream>
 #include <map>
 #include <string>
 
-#include "User.h"  
+#include "User.hpp"  
 
 using namespace std;
 
-class TranslationQuiz
+class Quiz
 {
 private:
     map<string, string> wordMap;
     User& user;
 
 public:
-    TranslationQuiz(User& user);
+    Quiz(User& user);
     void addWordPair(const string& english, const string& german);
     void startQuiz();
     void loadWordsFromFile(const string& filename);
 };
 
-#endif
+#endif // QUIZ_HPP

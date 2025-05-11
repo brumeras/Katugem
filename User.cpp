@@ -1,9 +1,9 @@
 #include <iostream>
 #include <string>
 
-#include "User.h"
-#include "Cat.h"
-#include "TranslationQuiz.h"
+#include "User.hpp"
+#include "Cat.hpp"
+#include "Quiz.hpp"
 
 using namespace std;
 

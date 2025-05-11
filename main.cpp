@@ -1,9 +1,9 @@
 #include <iostream>
 #include <string>
 
-#include "User.h"
-#include "Cat.h"
-#include "TranslationQuiz.h"
+#include "User.hpp"
+#include "Cat.hpp"
+#include "Quiz.hpp"
 
 using namespace std;
 
@@ -28,9 +28,9 @@ int main()
          << "Your current balance: " << user.getBalance()
          << " euros!\nGet more Euros by playing interactive German learning games to buy "
          << user.getCat().getName() << " some treats!\n\n"
-         << "Starting TranslationQuiz...\n\n";
+         << "Starting Quiz...\n\n";
 
-    TranslationQuiz quiz(user);
+    Quiz quiz(user);
 
     quiz.loadWordsFromFile("words.txt");
 
