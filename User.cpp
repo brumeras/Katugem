@@ -1,14 +1,15 @@
 #include <iostream>
 #include <string>
+#include <memory>
 
 #include "User.hpp"
-#include "Cat.hpp"
-#include "Quiz.hpp"
 
 using namespace std;
 
 User::User()
 {
+    setCat(Cat("Unnamed"));
+    setBalance(0);
 }
 
 User::User(string catName)
@@ -27,7 +28,7 @@ void User::setCat(Cat cat)
     this->cat = cat;
 }
 
-Cat& User::getCat()
+Cat &User::getCat()
 {
     return cat;
 }
@@ -37,17 +38,30 @@ int User::getBalance()
     return this->balance;
 }
 
-void User::reward(double balanceGained, int knowledgeGained)
+void User::setLearningStrategy()
 {
-    int balanceCurrent = this->getBalance();
-    this->setBalance(balanceCurrent + balanceGained);
+    if (strategy != nullptr)
+    {
+        delete strategy;
+        strategy = nullptr;
+    }
 
-    int knowledgeCurrent = this->getCat().getKnowledge();
-    this->getCat().setKnowledge(knowledgeCurrent + knowledgeGained);
+    strategy = new LearningQuizStrategy(&cat, &balance);
 }
 
-void User::punish(int knowledgeLost)
+void User::setTestingStrategy()
 {
-    int currentKnowledge = this->getCat().getKnowledge();
-    this->getCat().setKnowledge(currentKnowledge - knowledgeLost);
+    if (strategy != nullptr)
+    {
+        delete strategy;
+        strategy = nullptr;
+    }
+
+    strategy = new TestingQuizStrategy(&cat, &balance);
 }
+
+void User::runQuiz(map<string, string> wordMap)
+{
+    strategy->runQuiz(wordMap);
+}
+

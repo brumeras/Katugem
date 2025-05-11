@@ -1,17 +1,23 @@
-#ifndef USER_H
-#define USER_H
+#ifndef USER_HPP
+#define USER_HPP
 
 #include <string>
+#include <memory>
+#include <map>
 
 #include "Cat.hpp"
+#include "QuizStrategy.hpp"
 
 using namespace std;
+
+class QuizStrategy;
 
 class User
 {
 private:
     double balance;
     Cat cat;
+    QuizStrategy *strategy = nullptr;
 
 public:
     User();
@@ -22,9 +28,10 @@ public:
     Cat& getCat();
     int getBalance();
 
-    // these methods will be called after/during games
-    void reward(double balanceGained, int knowledgeGained);
-    void punish(int knowledgeGained);
+    void setLearningStrategy();
+    void setTestingStrategy();
+
+    void runQuiz(map<string, string> wordMap);
 };
 
 #endif
