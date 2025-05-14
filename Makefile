@@ -1,8 +1,8 @@
-app.exe: src/main.o src/User.o src/Cat.o src/QuizStrategy.o src/DataManager.o src/TreatShop.o
-	g++ -std=c++17 -o app.exe src/main.o src/User.o src/Cat.o src/QuizStrategy.o src/DataManager.o src/TreatShop.o
+tests.exe: src/Tests.o src/User.o src/Cat.o src/QuizStrategy.o src/DataManager.o src/TreatShop.o
+	g++ -std=c++17 -o tests.exe src/Tests.o src/User.o src/Cat.o src/QuizStrategy.o src/DataManager.o src/TreatShop.o
 
-src/main.o: src/main.cpp src/User.hpp src/DataManager.hpp
-	g++ -std=c++17 -c src/main.cpp -o src/main.o
+src/Tests.o: src/Tests.cpp src/User.hpp src/DataManager.hpp
+	g++ -std=c++17 -c src/Tests.cpp -o src/Tests.o
 
 src/TreatShop.o: src/TreatShop.cpp src/TreatShop.hpp src/User.hpp
 	g++ -std=c++17 -c src/TreatShop.cpp -o src/TreatShop.o
