@@ -21,6 +21,13 @@ Sukurti žaidimą, kuriame būtų galima mokytis vokiečių kalbos pagrindų per
 - Pristatėme užduočių ir veiklos diagramas, kurias įgyvendinsime antrame ir trečiame etapuose.
 - Etapo metu pyldėme tiek grupinę, tiek individualias laiko fiksavimo formas.
 
+### Programos paleidimas
+Programą sukompiliuoti ir paleisti galima Windows operacinės sistemos įrenginyje nuėjus terminalu į projekto katalogą ir įvedus šias komandas: 
+```
+make
+.\app.exe
+```
+
 ### Demonstracija
 Nuoroda į vaizdo įrašą, kuriame pademonstruojamas programos kompiliavimas ir paleidimas: https://youtu.be/Bg7e9gJNCuA.
 
@@ -38,6 +45,13 @@ Nuoroda į vaizdo įrašą, kuriame pademonstruojamas programos kompiliavimas ir
 - Funkcionalumui įgyvendinti panaudojome "Strategy" projektavimo šabloną.
 - Paruošėme testus, įrodančius, jog mūsų modulių funkcionalumas yra korektiškas.
 - Klasių sąryšius pademonstravome sukurdami UML klasių diagramą.
+
+### Programos paleidimas
+Programą sukompiliuoti ir paleisti galima Windows operacinės sistemos įrenginyje nuėjus terminalu į projekto katalogą ir įvedus šias komandas: 
+```
+make
+.\tests.exe
+```
 
 ### Demonstracija
 Nuoroda į vaizdo įrašą, kuriame pademonstruojamas testų scenarijų kompiliavimas ir paleidimas: https://youtu.be/O7fwvlANOy0
