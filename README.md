@@ -11,7 +11,7 @@ Komandos nariai:
 - Ugnius Teišerskis (1 grupė)
 
 ### Tikslas:
-Sukurti žaidimą, kuriame būtų galima mokytis vokiečių kalbos pagrindų per įvairius interaktyvius žaidimus. Užduotys bus paimtos iš kelių mokomųjų knygų, kur su kiekviena užduotimi vartotojas galės užsidirbti pinigų, kuriuos galės iškeisti į maistą savo virtualiam augintiniui.
+Sukurti programą, kurioje būtų galima mokytis vokiečių kalbos pagrindų per įvairius interaktyvius žaidimus. Užduotys bus paimtos iš kelių mokomųjų knygų, kur su kiekviena užduotimi vartotojas galės užsidirbti pinigų, kuriuos galės iškeisti į maistą savo virtualiam augintiniui.
 
 `Pažymio pasiskirstymas tarp komandos narių visuose etapuose yra 50/50.`
 
