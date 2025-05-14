@@ -2,13 +2,15 @@
 #include <limits>
 
 #include "QuizStrategy.hpp"
-#include "User.hpp"
 
 using namespace std;
 
 void LearningQuizStrategy::runQuiz(const map<string, string> &wordMap)
 {
-    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // getline(cin, input) function misbehaves sometimes, so its necessary to have this line here
+    // getline(cin, input) function misbehaves, if the "cin << <string>" function was called before
+    // the newline character gets carried over and that results in an immediate call of getline(cin, input)
+    // where input is "\n". This ignore function clears the buffer and is used repeatedly across the project
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
     cout << "Welcome to Learning Mode!\n"
          << "We'll show you English words and their German translations.\n"
@@ -30,13 +32,17 @@ void LearningQuizStrategy::runQuiz(const map<string, string> &wordMap)
         }
 
         cat->setKnowledge(cat->getKnowledge() + 1);
+
+        user->ageCatSlightly();
+
         cout << name << " gained 1 knowledge point for reviewing this word!\n"
              << "Current " << name << "'s knowledge: " << cat->getKnowledge() << " points\n\n";
     }
 
     cout << "Learning session complete!\n"
          << "Current user's account balance: " << *balance << " Euro\n"
-         << "Current " << name << "'s knowledge: " << cat->getKnowledge() << " knowledge points\n";
+         << "Current " << name << "'s knowledge: " << cat->getKnowledge() << " knowledge points\n"
+         << "Current " << name << "'s age: " << cat->getAge() << " years\n";
 }
 
 void TestingQuizStrategy::runQuiz(const map<string, string> &wordMap)
@@ -60,6 +66,8 @@ void TestingQuizStrategy::runQuiz(const map<string, string> &wordMap)
             break;
         }
 
+        user->ageCatSlightly();
+
         if (userAnswer == pair.second)
         {
             ++correctCounter;
@@ -82,5 +90,6 @@ void TestingQuizStrategy::runQuiz(const map<string, string> &wordMap)
     cout << "Quiz complete!\n"
          << correctCounter << "/" << wordMap.size() << " correct answers!\n"
          << "Current user's account balance: " << *balance << " Euro\n"
-         << "Current " << name << "'s knowledge: " << cat->getKnowledge() << " knowledge points\n";
+         << "Current " << name << "'s knowledge: " << cat->getKnowledge() << " knowledge points\n"
+         << "Current " << name << "'s age: " << cat->getAge() << " years\n";
 }

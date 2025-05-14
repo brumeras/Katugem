@@ -5,6 +5,7 @@
 #include "User.hpp"
 #include "QuizDataLoader.hpp"
 #include "UserDataManager.hpp"
+#include "TreatShop.hpp"
 
 using namespace std;
 
@@ -46,12 +47,13 @@ int main()
                     << "1) TODO: Choose word theme.\n"
                     << "2) Start quiz in learning mode.\n"
                     << "3) Start quiz in testing mode.\n"
-                    << "4) TODO: Go to the treat shop.\n"
-                    << "5) Save user data.\n"
-                    << "6) Load user data.\n"
-                    << "7) Create a new user.\n"
-                    << "8) See user data.\n"
-                    << "9) None. Let me out.\n"
+                    << "4) Go to the treat shop.\n"
+                    << "5) Feed your cat a treat.\n"
+                    << "6) Save user data.\n"
+                    << "7) Load user data.\n"
+                    << "8) Create a new user.\n"
+                    << "9) See user data.\n"
+                    << "10) None. Let me out.\n\n"
                     << "\nYour choice >> ";
 
                cin >> input;
@@ -60,6 +62,7 @@ int main()
                {
                case 1:
                     cout << "\nTODO\n\n";
+                    user.ageCatSlightly();
                     break;
 
                case 2:
@@ -75,10 +78,14 @@ int main()
                     break;
 
                case 4:
-                    cout << "\nTODO\n\n";
+                    TreatShop::enterShop(user);
                     break;
 
                case 5:
+                    TreatShop::displayInventory(user);
+                    break;
+
+               case 6:
                     {
                          string filename;
                          cout << "\nEnter a filename to save your data >> ";
@@ -93,6 +100,8 @@ int main()
                               cout << "\nFailed to save user data.\n\n";
                          }
 
+                         user.ageCatSlightly();
+
                          cout << "Press enter to continue >> ";
                          cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
                          string temp;
@@ -101,7 +110,7 @@ int main()
 
                     break;
 
-               case 6:
+               case 7:
                     {
                          string filename;
                          cout << "\nEnter the filename to load your data from >> ";
@@ -122,6 +131,8 @@ int main()
                               cout << "\nFailed to load user data.\n\n";
                          }
 
+                         user.ageCatSlightly();
+
                          cout << "Press enter to continue >> ";
                          cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
                          string temp;
@@ -130,20 +141,25 @@ int main()
 
                     break;
 
-               case 7:
+               case 8:
                     cout << "\nStarting over...\n\n";
                     break;
 
-               case 8:
+               case 9:
                     {
                          cout << "\nYour dear " << user.getCat().getName() << "'s current stats:\n"
                          << "Name:\t\t" << user.getCat().getName() << "\n"
                          << "Age:\t\t" << user.getCat().getAge() << " years\n"
                          << "Weight:\t\t" << user.getCat().getWeight() << " kilograms\n"
                          << "Knowledge:\t" << user.getCat().getKnowledge() << " knowledge points\n\n"
-                         << "Your current balance: " << user.getBalance() << " euros!\n\n"
-                         << "Press enter to continue >> ";
+                         << "Your current balance: " << user.getBalance() << " euros!\n\n";
                          
+                         const vector<Treat>& treats = user.getOwnedTreats();
+                         cout << "Your inventory has " << treats.size() << " treats.\n\n";
+
+                         user.ageCatSlightly();
+                         
+                         cout << "Press enter to continue >> ";
                          cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
                          string temp;
                          getline(cin, temp);
@@ -151,10 +167,11 @@ int main()
                          break;
                     }
 
-               case 9:
+               case 10:
                     cout << "\nExiting program...\n\n";
                     gameRunning = 0;
                     break;
+
 
                default:
                     cout << "\nInvalid choice! Try again...\n\n";

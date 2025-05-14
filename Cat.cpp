@@ -28,7 +28,7 @@ void Cat::setWeight(double weight)
     this->weight = weight;
 }
 
-void Cat::setAge(int age)
+void Cat::setAge(double age)
 {
     this->age = age;
 }
@@ -48,7 +48,7 @@ double Cat::getWeight() const
     return weight;
 }
 
-int Cat::getAge() const
+double Cat::getAge() const
 {
     return age;
 }

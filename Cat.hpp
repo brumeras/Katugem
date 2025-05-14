@@ -10,7 +10,7 @@ class Cat
 private:
     string name;
     double weight;
-    int age;
+    double age;
     int knowledge;
 
 public:
@@ -19,12 +19,12 @@ public:
 
     void setName(string name);
     void setWeight(double weight);
-    void setAge(int age);
+    void setAge(double age);
     void setKnowledge(int knowledge);
 
     string getName() const;
     double getWeight() const;
-    int getAge() const;
+    double getAge() const;
     int getKnowledge() const;
 };
 
