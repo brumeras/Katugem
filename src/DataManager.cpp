@@ -4,7 +4,10 @@
 
 #include "DataManager.hpp"
 
-const string DataManager::savesPath = "saves/";
+DataManager::DataManager() : wordMap() 
+{
+    // Initialize with empty wordMap
+}
 
 void DataManager::addWordPair(const string &english, const string &german)
 {
@@ -13,10 +16,12 @@ void DataManager::addWordPair(const string &english, const string &german)
 
 void DataManager::loadWordsFromFile(const string &filename)
 {
-    ifstream file(filename);
+    string fullPath = resourcesPath + filename;
+
+    ifstream file(fullPath);
     if (!file)
     {
-        cerr << "Failed to open file: " << filename << endl;
+        cerr << "Failed to open file: " << fullPath << "\n";
         return;
     }
 
@@ -37,6 +42,40 @@ void DataManager::loadWordsFromFile(const string &filename)
 const map<string, string>& DataManager::getWordMap() const
 {
     return wordMap;
+}
+
+vector<Treat> DataManager::loadTreatsFromFile(const string &filename)
+{
+    string fullPath = resourcesPath + filename;
+    vector<Treat> treats;
+    
+    ifstream file(fullPath);
+    if (!file)
+    {
+        cerr << "Failed to open treats file: " << fullPath << "\n";
+        return treats;
+    }
+    
+    string line;
+    while (getline(file, line))
+    {
+        istringstream iss(line);
+        Treat treat;
+        
+        if (iss >> treat.name >> treat.price >> treat.weightIncrease >> treat.knowledgeIncrease)
+        {
+            size_t pos = 0;
+            while ((pos = treat.name.find('_', pos)) != string::npos) {
+                treat.name.replace(pos, 1, " ");
+                pos += 1;
+            }
+            
+            treats.push_back(treat);
+        }
+    }
+    
+    file.close();
+    return treats;
 }
 
 bool DataManager::saveUserData(User &user, const string &filename)

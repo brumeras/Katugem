@@ -3,11 +3,11 @@ cat katze
 dog hund  
 sun sonne  
 please bitte  
-thankswas danke  
+thanks danke  
 yes ja  
 no nein  
 maybe vielleicht  
-sorry Entschuldigung  
+sorry entschuldigung  
 good gut  
 bad schlecht  
 I ich  

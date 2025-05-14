@@ -1,24 +1,23 @@
-app.exe: main.o User.o Cat.o QuizStrategy.o DataManager.o TreatShop.o
-	g++ -std=c++17 -o app.exe main.o User.o Cat.o QuizStrategy.o DataManager.o TreatShop.o
+app.exe: src/main.o src/User.o src/Cat.o src/QuizStrategy.o src/DataManager.o src/TreatShop.o
+	g++ -std=c++17 -o app.exe src/main.o src/User.o src/Cat.o src/QuizStrategy.o src/DataManager.o src/TreatShop.o
 
-main.o: main.cpp User.hpp DataManager.hpp
-	g++ -std=c++17 -c main.cpp
+src/main.o: src/main.cpp src/User.hpp src/DataManager.hpp
+	g++ -std=c++17 -c src/main.cpp -o src/main.o
 
-TreatShop.o: TreatShop.cpp TreatShop.hpp User.hpp
-	g++ -std=c++17 -c TreatShop.cpp
+src/TreatShop.o: src/TreatShop.cpp src/TreatShop.hpp src/User.hpp
+	g++ -std=c++17 -c src/TreatShop.cpp -o src/TreatShop.o
 
-DataManager.o: DataManager.cpp DataManager.hpp User.hpp
-	g++ -std=c++17 -c DataManager.cpp
+src/DataManager.o: src/DataManager.cpp src/DataManager.hpp src/User.hpp
+	g++ -std=c++17 -c src/DataManager.cpp -o src/DataManager.o
 
-User.o: User.cpp User.hpp Cat.hpp QuizStrategy.hpp
-	g++ -std=c++17 -c User.cpp
+src/User.o: src/User.cpp src/User.hpp src/Cat.hpp src/QuizStrategy.hpp
+	g++ -std=c++17 -c src/User.cpp -o src/User.o
 
-Cat.o: Cat.cpp Cat.hpp
-	g++ -std=c++17 -c Cat.cpp
+src/Cat.o: src/Cat.cpp src/Cat.hpp
+	g++ -std=c++17 -c src/Cat.cpp -o src/Cat.o
 
-QuizStrategy.o: QuizStrategy.cpp QuizStrategy.hpp
-	g++ -std=c++17 -c QuizStrategy.cpp
+src/QuizStrategy.o: src/QuizStrategy.cpp src/QuizStrategy.hpp
+	g++ -std=c++17 -c src/QuizStrategy.cpp -o src/QuizStrategy.o
 
 clean:
-	del /Q *.o *.exe 2> nul || rm -f *.o *.exe
-
+	del /Q src\*.o *.exe 2> nul || rm -f src/*.o *.exe

@@ -6,9 +6,10 @@
 
 using namespace std;
 
-const vector<Treat> TreatShop::availableTreats = {
-    {"Milk", 2.0, 0.05, 0},
-    {"Treat", 5.0, 0.1, 1}};
+TreatShop::TreatShop() : availableTreats()
+{
+    // Initialize with empty treats vector
+}
 
 void TreatShop::displayShop(User &user)
 {
@@ -102,4 +103,14 @@ void TreatShop::displayInventory(User &user)
             cout << "\nInvalid choice! Try again...\n\n";
         }
     }
+}
+
+void TreatShop::loadTreats(const vector<Treat> &treats)
+{
+    availableTreats = treats;
+}
+
+const vector<Treat> &TreatShop::getAvailableTreats() const
+{
+    return availableTreats;
 }

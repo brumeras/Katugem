@@ -14,6 +14,18 @@ int main()
           << "               Grow Your German"
           << "\n---------------------------------------------\n\n";
 
+     DataManager dataManager;
+     TreatShop treatShop;
+     
+     vector<Treat> treats = dataManager.loadTreatsFromFile("treats.txt");
+     if (!treats.empty())
+     {
+          treatShop.loadTreats(treats);
+     } else
+     {
+          cout << "Failed to load treats from file. Using default treats.\n\n";
+     }
+
      int gameRunning = 1;
 
      while (gameRunning)
@@ -36,7 +48,6 @@ int main()
                << user.getCat().getName() << " some treats!\n\n"
                << "Starting Quiz...\n\n";
 
-          DataManager dataManager;
           dataManager.loadWordsFromFile("words.txt");
 
           int input = 0;
@@ -77,11 +88,11 @@ int main()
                     break;
 
                case 4:
-                    TreatShop::enterShop(user);
+                    treatShop.enterShop(user);
                     break;
 
                case 5:
-                    TreatShop::displayInventory(user);
+                    treatShop.displayInventory(user);
                     break;
 
                case 6:
