@@ -39,6 +39,12 @@ Nuoroda į vaizdo įrašą, kuriame pademonstruojamas programos kompiliavimas ir
 - Paruošėme testus, įrodančius, jog mūsų modulių funkcionalumas yra korektiškas.
 - Klasių sąryšius pademonstravome sukurdami UML klasių diagramą.
 
+### Demonstracija
+Nuoroda į vaizdo įrašą, kuriame pademonstruojamas testų scenarijų kompiliavimas ir paleidimas: https://youtu.be/O7fwvlANOy0
+
+### UML klasių diagrama
+
+![Image](docs/KlasiųDiagrama.png)
 
 
 
