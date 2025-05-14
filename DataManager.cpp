@@ -1,11 +1,45 @@
 #include <fstream>
+#include <sstream>
 #include <iostream>
 
-#include "UserDataManager.hpp"
+#include "DataManager.hpp"
 
-const string savesPath = "saves/";
+const string DataManager::savesPath = "saves/";
 
-bool UserDataManager::saveUserData(User &user, const string &filename)
+void DataManager::addWordPair(const string &english, const string &german)
+{
+    wordMap[english] = german;
+}
+
+void DataManager::loadWordsFromFile(const string &filename)
+{
+    ifstream file(filename);
+    if (!file)
+    {
+        cerr << "Failed to open file: " << filename << endl;
+        return;
+    }
+
+    string line;
+    while (getline(file, line))
+    {
+        istringstream iss(line);
+        string english, german;
+        if (iss >> english >> german)
+        {
+            addWordPair(english, german);
+        }
+    }
+
+    file.close();
+}
+
+const map<string, string>& DataManager::getWordMap() const
+{
+    return wordMap;
+}
+
+bool DataManager::saveUserData(User &user, const string &filename)
 {
     string fullPath = savesPath + filename;
     ofstream outputFile(fullPath);
@@ -39,7 +73,7 @@ bool UserDataManager::saveUserData(User &user, const string &filename)
     return true;
 }
 
-bool UserDataManager::loadUserData(User &user, const string &filename)
+bool DataManager::loadUserData(User &user, const string &filename)
 {
     string fullPath = savesPath + filename;
     ifstream inputFile(fullPath);

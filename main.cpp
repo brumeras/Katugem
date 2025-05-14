@@ -3,8 +3,7 @@
 #include <limits>
 
 #include "User.hpp"
-#include "QuizDataLoader.hpp"
-#include "UserDataManager.hpp"
+#include "DataManager.hpp"
 #include "TreatShop.hpp"
 
 using namespace std;
@@ -37,11 +36,11 @@ int main()
                << user.getCat().getName() << " some treats!\n\n"
                << "Starting Quiz...\n\n";
 
-          QuizDataLoader loader;
-          loader.loadWordsFromFile("words.txt");
+          DataManager dataManager;
+          dataManager.loadWordsFromFile("words.txt");
 
           int input = 0;
-          while (input != 7 && input != 9)
+          while (input != 8 && input != 10)
           {
                cout << "\nWhat kind of adventures are you and " << user.getCat().getName() << " up to?!\n"
                     << "1) TODO: Choose word theme.\n"
@@ -68,13 +67,13 @@ int main()
                case 2:
                     cout << "\n";
                     user.setLearningStrategy();
-                    user.runQuiz(loader.getWordMap());
+                    user.runQuiz(dataManager.getWordMap());
                     break;
 
                case 3:
                     cout << "\n";
                     user.setTestingStrategy();
-                    user.runQuiz(loader.getWordMap());
+                    user.runQuiz(dataManager.getWordMap());
                     break;
 
                case 4:
@@ -91,7 +90,7 @@ int main()
                          cout << "\nEnter a filename to save your data >> ";
                          cin >> filename;
 
-                         if (UserDataManager::saveUserData(user, filename))
+                         if (dataManager.saveUserData(user, filename))
                          {
                               cout << "\nUser data saved successfully to " << filename << "!\n\n";
                          }
@@ -116,7 +115,7 @@ int main()
                          cout << "\nEnter the filename to load your data from >> ";
                          cin >> filename;
 
-                         if (UserDataManager::loadUserData(user, filename))
+                         if (dataManager.loadUserData(user, filename))
                          {
                               cout << "\nUser data loaded successfully from " << filename << "!\n";
                               cout << "\nLoaded " << user.getCat().getName() << "'s stats:\n"
