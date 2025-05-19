@@ -1,8 +1,18 @@
-tests.exe: src/Tests.o src/User.o src/Cat.o src/QuizStrategy.o src/DataManager.o src/TreatShop.o
-	g++ -std=c++17 -o tests.exe src/Tests.o src/User.o src/Cat.o src/QuizStrategy.o src/DataManager.o src/TreatShop.o
+app: app.exe
 
-src/Tests.o: src/Tests.cpp src/User.hpp src/DataManager.hpp
-	g++ -std=c++17 -c src/Tests.cpp -o src/Tests.o
+test: test.exe
+
+app.exe: src/App.o src/User.o src/Cat.o src/QuizStrategy.o src/DataManager.o src/TreatShop.o
+	g++ -std=c++17 -o App.exe src/App.o src/User.o src/Cat.o src/QuizStrategy.o src/DataManager.o src/TreatShop.o
+
+test.exe: src/Test.o src/User.o src/Cat.o src/QuizStrategy.o src/DataManager.o src/TreatShop.o
+	g++ -std=c++17 -o Test.exe src/Test.o src/User.o src/Cat.o src/QuizStrategy.o src/DataManager.o src/TreatShop.o
+
+src/App.o: src/App.cpp src/User.hpp src/DataManager.hpp src/TreatShop.hpp
+	g++ -std=c++17 -c src/App.cpp -o src/App.o
+
+src/Test.o: src/Test.cpp src/User.hpp src/DataManager.hpp
+	g++ -std=c++17 -c src/Test.cpp -o src/Test.o
 
 src/TreatShop.o: src/TreatShop.cpp src/TreatShop.hpp src/User.hpp
 	g++ -std=c++17 -c src/TreatShop.cpp -o src/TreatShop.o
