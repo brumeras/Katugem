@@ -24,7 +24,7 @@ Sukurti programą, kurioje būtų galima mokytis vokiečių kalbos pagrindų per
 ### Programos paleidimas
 Programą sukompiliuoti ir paleisti galima Windows operacinės sistemos įrenginyje nuėjus terminalu į projekto katalogą ir įvedus šias komandas: 
 ```
-make
+make app
 .\app.exe
 ```
 
@@ -49,8 +49,8 @@ Nuoroda į vaizdo įrašą, kuriame pademonstruojamas programos kompiliavimas ir
 ### Programos paleidimas
 Programą sukompiliuoti ir paleisti galima Windows operacinės sistemos įrenginyje nuėjus terminalu į projekto katalogą ir įvedus šias komandas: 
 ```
-make
-.\tests.exe
+make test
+.\test.exe
 ```
 
 ### Demonstracija
