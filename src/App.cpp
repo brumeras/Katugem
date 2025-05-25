@@ -8,7 +8,7 @@
 
 using namespace std;
 
-void displayThemeSelectionAndLoad(DataManager& dataManager);
+void displayThemeSelectionAndLoad(DataManager &dataManager);
 
 int main()
 {
@@ -18,12 +18,13 @@ int main()
 
      DataManager dataManager;
      TreatShop treatShop;
-     
+
      vector<Treat> treats = dataManager.loadTreatsFromFile("treats.txt");
      if (!treats.empty())
      {
           treatShop.loadTreats(treats);
-     } else
+     }
+     else
      {
           cout << "Failed to load treats from file. Using default treats.\n\n";
      }
@@ -49,7 +50,6 @@ int main()
                << " euros!\nGet more Euros by playing interactive German learning games to buy "
                << user.getCat().getName() << " some treats!\n\n";
 
-          // Initial theme selection
           displayThemeSelectionAndLoad(dataManager);
 
           int input = 0;
@@ -69,6 +69,15 @@ int main()
                     << "\nYour choice >> ";
 
                cin >> input;
+
+               if (cin.fail())
+               {
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    cout << "\nInvalid input! Please enter a number between 1 and 10.\n";
+                    input = 0;
+                    continue;
+               }
 
                switch (input)
                {
@@ -112,92 +121,91 @@ int main()
                     break;
 
                case 6:
+               {
+                    string filename;
+                    cout << "\nEnter a filename to save your data >> ";
+                    cin >> filename;
+
+                    if (dataManager.saveUserData(user, filename))
                     {
-                         string filename;
-                         cout << "\nEnter a filename to save your data >> ";
-                         cin >> filename;
-
-                         if (dataManager.saveUserData(user, filename))
-                         {
-                              cout << "\nUser data saved successfully to " << filename << "!\n\n";
-                         }
-                         else
-                         {
-                              cout << "\nFailed to save user data.\n\n";
-                         }
-
-                         user.ageCatSlightly();
-
-                         cout << "Press enter to continue >> ";
-                         cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
-                         string temp;
-                         getline(cin, temp);
+                         cout << "\nUser data saved successfully to " << filename << "!\n\n";
+                    }
+                    else
+                    {
+                         cout << "\nFailed to save user data.\n\n";
                     }
 
-                    break;
+                    user.ageCatSlightly();
+
+                    cout << "Press enter to continue >> ";
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    string temp;
+                    getline(cin, temp);
+               }
+
+               break;
 
                case 7:
+               {
+                    string filename;
+                    cout << "\nEnter the filename to load your data from >> ";
+                    cin >> filename;
+
+                    if (dataManager.loadUserData(user, filename))
                     {
-                         string filename;
-                         cout << "\nEnter the filename to load your data from >> ";
-                         cin >> filename;
-
-                         if (dataManager.loadUserData(user, filename))
-                         {
-                              cout << "\nUser data loaded successfully from " << filename << "!\n";
-                              cout << "\nLoaded " << user.getCat().getName() << "'s stats:\n"
-                                   << "Name:\t\t" << user.getCat().getName() << "\n"
-                                   << "Age:\t\t" << user.getCat().getAge() << " years\n"
-                                   << "Weight:\t\t" << user.getCat().getWeight() << " kilograms\n"
-                                   << "Knowledge:\t" << user.getCat().getKnowledge() << " knowledge points\n"
-                                   << "Balance:\t" << user.getBalance() << " euros\n\n";
-                         }
-                         else
-                         {
-                              cout << "\nFailed to load user data.\n\n";
-                         }
-
-                         user.ageCatSlightly();
-
-                         cout << "Press enter to continue >> ";
-                         cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
-                         string temp;
-                         getline(cin, temp);
+                         cout << "\nUser data loaded successfully from " << filename << "!\n";
+                         cout << "\nLoaded " << user.getCat().getName() << "'s stats:\n"
+                              << "Name:\t\t" << user.getCat().getName() << "\n"
+                              << "Age:\t\t" << user.getCat().getAge() << " years\n"
+                              << "Weight:\t\t" << user.getCat().getWeight() << " kilograms\n"
+                              << "Knowledge:\t" << user.getCat().getKnowledge() << " knowledge points\n"
+                              << "Balance:\t" << user.getBalance() << " euros\n\n";
+                    }
+                    else
+                    {
+                         cout << "\nFailed to load user data.\n\n";
                     }
 
-                    break;
+                    user.ageCatSlightly();
+
+                    cout << "Press enter to continue >> ";
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    string temp;
+                    getline(cin, temp);
+               }
+
+               break;
 
                case 8:
                     cout << "\nStarting over...\n\n";
                     break;
 
                case 9:
-                    {
-                         cout << "\nYour dear " << user.getCat().getName() << "'s current stats:\n"
+               {
+                    cout << "\nYour dear " << user.getCat().getName() << "'s current stats:\n"
                          << "Name:\t\t" << user.getCat().getName() << "\n"
                          << "Age:\t\t" << user.getCat().getAge() << " years\n"
                          << "Weight:\t\t" << user.getCat().getWeight() << " kilograms\n"
                          << "Knowledge:\t" << user.getCat().getKnowledge() << " knowledge points\n\n"
                          << "Your current balance: " << user.getBalance() << " euros!\n\n";
-                         
-                         const vector<Treat>& treats = user.getOwnedTreats();
-                         cout << "Your inventory has " << treats.size() << " treats.\n\n";
 
-                         user.ageCatSlightly();
-                         
-                         cout << "Press enter to continue >> ";
-                         cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
-                         string temp;
-                         getline(cin, temp);
+                    const vector<Treat> &treats = user.getOwnedTreats();
+                    cout << "Your inventory has " << treats.size() << " treats.\n\n";
 
-                         break;
-                    }
+                    user.ageCatSlightly();
+
+                    cout << "Press enter to continue >> ";
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    string temp;
+                    getline(cin, temp);
+
+                    break;
+               }
 
                case 10:
                     cout << "\nExiting program...\n\n";
                     gameRunning = 0;
                     break;
-
 
                default:
                     cout << "\nInvalid choice! Try again...\n\n";
@@ -209,20 +217,20 @@ int main()
      return 0;
 }
 
-void displayThemeSelectionAndLoad(DataManager& dataManager)
+void displayThemeSelectionAndLoad(DataManager &dataManager)
 {
      cout << "\nStarting theme selection...\n";
-     
+
      int themeChoice = 0;
      bool validSelection = false;
-     
+
      while (!validSelection)
      {
           dataManager.displayThemes();
-          
+
           cout << "Select your theme >> ";
           cin >> themeChoice;
-          
+
           if (dataManager.loadWordsByTheme(themeChoice))
           {
                validSelection = true;
@@ -233,7 +241,7 @@ void displayThemeSelectionAndLoad(DataManager& dataManager)
                cout << "Failed to load theme. Please try again.\n\n";
           }
      }
-     
+
      cout << "Press enter to continue >> ";
      cin.ignore(numeric_limits<streamsize>::max(), '\n');
      string temp;
