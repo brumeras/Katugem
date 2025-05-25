@@ -9,15 +9,28 @@
 
 using namespace std;
 
+struct Theme
+{
+    string name;
+    string filename;
+    string description;
+};
+
 class DataManager
 {
 private:
     const string savesPath = "src/saves/";
     const string resourcesPath = "src/resources/";
     map<string, string> wordMap;
+    vector<Theme> availableThemes;
 
 public:
     DataManager();
+    
+    void initializeThemes();
+    void displayThemes() const;
+    bool loadWordsByTheme(int themeIndex);
+    const vector<Theme>& getAvailableThemes() const;
     
     void addWordPair(const string &english, const string &german);
     void loadWordsFromFile(const string &filename);

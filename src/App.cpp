@@ -8,6 +8,8 @@
 
 using namespace std;
 
+void displayThemeSelectionAndLoad(DataManager& dataManager);
+
 int main()
 {
      cout << "\n---------------------------------------------\n"
@@ -45,16 +47,16 @@ int main()
                << "Knowledge:\t" << user.getCat().getKnowledge() << " knowledge points\n\n"
                << "Your current balance: " << user.getBalance()
                << " euros!\nGet more Euros by playing interactive German learning games to buy "
-               << user.getCat().getName() << " some treats!\n\n"
-               << "Starting Quiz...\n\n";
+               << user.getCat().getName() << " some treats!\n\n";
 
-          dataManager.loadWordsFromFile("words.txt");
+          // Initial theme selection
+          displayThemeSelectionAndLoad(dataManager);
 
           int input = 0;
           while (input != 8 && input != 10)
           {
                cout << "\nWhat kind of adventures are you and " << user.getCat().getName() << " up to?!\n"
-                    << "1) TODO: Choose word theme.\n"
+                    << "1) Choose word theme.\n"
                     << "2) Start quiz in learning mode.\n"
                     << "3) Start quiz in testing mode.\n"
                     << "4) Go to the treat shop.\n"
@@ -71,20 +73,34 @@ int main()
                switch (input)
                {
                case 1:
-                    cout << "\nTODO\n\n";
+                    displayThemeSelectionAndLoad(dataManager);
                     user.ageCatSlightly();
                     break;
 
                case 2:
-                    cout << "\n";
-                    user.setLearningStrategy();
-                    user.runQuiz(dataManager.getWordMap());
+                    if (dataManager.getWordMap().empty())
+                    {
+                         cout << "\nNo words loaded! Please select a theme first.\n\n";
+                    }
+                    else
+                    {
+                         cout << "\n";
+                         user.setLearningStrategy();
+                         user.runQuiz(dataManager.getWordMap());
+                    }
                     break;
 
                case 3:
-                    cout << "\n";
-                    user.setTestingStrategy();
-                    user.runQuiz(dataManager.getWordMap());
+                    if (dataManager.getWordMap().empty())
+                    {
+                         cout << "\nNo words loaded! Please select a theme first.\n\n";
+                    }
+                    else
+                    {
+                         cout << "\n";
+                         user.setTestingStrategy();
+                         user.runQuiz(dataManager.getWordMap());
+                    }
                     break;
 
                case 4:
@@ -191,4 +207,35 @@ int main()
      }
 
      return 0;
+}
+
+void displayThemeSelectionAndLoad(DataManager& dataManager)
+{
+     cout << "\nStarting theme selection...\n";
+     
+     int themeChoice = 0;
+     bool validSelection = false;
+     
+     while (!validSelection)
+     {
+          dataManager.displayThemes();
+          
+          cout << "Select your theme >> ";
+          cin >> themeChoice;
+          
+          if (dataManager.loadWordsByTheme(themeChoice))
+          {
+               validSelection = true;
+               cout << "Theme loaded successfully! Ready to start learning.\n";
+          }
+          else
+          {
+               cout << "Failed to load theme. Please try again.\n\n";
+          }
+     }
+     
+     cout << "Press enter to continue >> ";
+     cin.ignore(numeric_limits<streamsize>::max(), '\n');
+     string temp;
+     getline(cin, temp);
 }
