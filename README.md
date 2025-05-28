@@ -11,7 +11,7 @@ Komandos nariai:
 - Ugnius Teišerskis (1 grupė)
 
 ### Tikslas:
-Sukurti programą, kurioje būtų galima mokytis vokiečių kalbos pagrindų per įvairius interaktyvius žaidimus. Užduotys bus paimtos iš kelių mokomųjų knygų, kur su kiekviena užduotimi vartotojas galės užsidirbti pinigų, kuriuos galės iškeisti į maistą savo virtualiam augintiniui.
+Sukurti programą, kurioje būtų galima mokytis vokiečių kalbos pagrindų per interaktyvius žaidimus. Užduotys bus paimtos iš kelių mokomųjų knygų, kur su kiekviena užduotimi vartotojas galės užsidirbti pinigų, kuriuos galės iškeisti į maistą savo virtualiam augintiniui ir padėti jam augti!
 
 `Pažymio pasiskirstymas tarp komandos narių visuose etapuose yra 50/50.`
 
@@ -54,11 +54,29 @@ make test
 ```
 
 ### Demonstracija
-Nuoroda į vaizdo įrašą, kuriame pademonstruojamas testų scenarijų kompiliavimas ir paleidimas: https://youtu.be/O7fwvlANOy0
+Nuoroda į vaizdo įrašą, kuriame pademonstruojamas testų scenarijų kompiliavimas ir paleidimas: https://youtu.be/O7fwvlANOy0.
 
 ### UML klasių diagrama
 
 ![Image](docs/KlasiųDiagrama.png)
+
+## P3 (2025/05/28):
+
+- Sujungėme visus skirtingus žaidimo modulius į vieną aplikaciją.
+- Sukūrėme savo žaidimui vartotojo sąsają, kuri pilnavertiškai leidžia tobulinti savo vokiečių kalbos žinias bei auginti savo katinuką.
+
+### Žaidimo paleidimas
+Žaidimą sukompiliuoti ir paleisti galima Windows operacinės sistemos įrenginyje nuėjus terminalu į projekto katalogą ir įvedus šias komandas: 
+```
+make app
+.\app.exe
+```
+
+## Demonstracija
+
+Labai paprasta žaidimo demonstracija, kuri parodo nedidelę dalį mūsų žaidimo funkcionalumo: https://youtu.be/QZdOJAteIL8.
+
+# Smagaus naudojimo!
 
 
 
